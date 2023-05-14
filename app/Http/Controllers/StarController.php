@@ -63,9 +63,13 @@ class StarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $star = Star::find($id);
-        $star->fill($request->all());
+        $star = Star::findOrFail($id);
+        $star->name = $request->name;
+        $star->firstName = $request->firstName;
+        $star->description = $request->description;
+        $star->image = $request->image;
         $star->save();
+        
         return $star;
     }
 
